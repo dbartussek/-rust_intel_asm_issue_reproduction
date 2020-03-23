@@ -1,6 +1,7 @@
 #![no_std]
 #![no_main]
 #![feature(asm)]
+#![feature(lang_items)]
 
 ///! A small reproduction case
 ///!
@@ -89,3 +90,5 @@ pub unsafe fn efi_main(stack: *mut u8) {
 fn panic(_info: &PanicInfo) -> ! {
     loop {}
 }
+
+#[lang = "eh_personality"] extern fn eh_personality() {}
