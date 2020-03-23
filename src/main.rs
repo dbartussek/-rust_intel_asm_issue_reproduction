@@ -5,6 +5,10 @@
 ///! A small reproduction case
 ///!
 ///! Build with `cargo xbuild --target x86_64-unknown-uefi`
+///!
+///! Other tests:
+///! - setting opt-level to 0 or 1 compiles
+///! - opt-level 2, 3, "s", "z" cause the error
 
 use core::mem::{ManuallyDrop, MaybeUninit};
 use core::panic::PanicInfo;
