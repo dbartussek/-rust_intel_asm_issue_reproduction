@@ -1,7 +1,4 @@
-#![no_std]
-#![no_main]
 #![feature(asm)]
-#![feature(lang_items)]
 
 ///! A small reproduction case
 ///!
@@ -12,8 +9,7 @@
 ///! - opt-level 2, 3, "s", "z" cause the error
 ///! - a release build works just fine, just a debug build with optimization has the issue
 
-use core::mem::{ManuallyDrop, MaybeUninit};
-use core::panic::PanicInfo;
+use std::mem::{ManuallyDrop, MaybeUninit};
 
 pub unsafe fn call_with_stack<T>(
     arg: &mut T,
@@ -77,18 +73,12 @@ where
 }
 
 #[no_mangle]
-pub unsafe fn _start(stack: *mut u8) {
+pub unsafe fn external(stack: *mut u8) {
     call_closure_with_stack(|| (), stack);
 }
 
-#[no_mangle]
-pub unsafe fn efi_main(stack: *mut u8) {
-    call_closure_with_stack(|| (), stack);
+pub fn main() {
+    unsafe {
+        call_closure_with_stack(|| (), std::ptr::null_mut());
+    }
 }
-
-#[panic_handler]
-fn panic(_info: &PanicInfo) -> ! {
-    loop {}
-}
-
-#[lang = "eh_personality"] extern fn eh_personality() {}
