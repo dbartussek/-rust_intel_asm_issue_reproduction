@@ -5,7 +5,7 @@
 
 ///! A small reproduction case
 ///!
-///! Build with `cargo xbuild --target x86_64-unknown-uefi`
+///! Build with `cargo build`
 ///!
 ///! Notes:
 ///! - setting opt-level to 0 or 1 compiles
