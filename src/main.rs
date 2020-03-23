@@ -4,7 +4,7 @@
 
 ///! A small reproduction case
 ///!
-///! Build with `cargo xbuild --target x86_64-unknown-uefi -Z unstable-options --profile kernel_debug`
+///! Build with `cargo xbuild --target x86_64-unknown-uefi`
 
 use core::mem::{ManuallyDrop, MaybeUninit};
 use core::panic::PanicInfo;
