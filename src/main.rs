@@ -9,6 +9,7 @@
 ///! Other tests:
 ///! - setting opt-level to 0 or 1 compiles
 ///! - opt-level 2, 3, "s", "z" cause the error
+///! - a release build works just fine, just a debug build with optimization has the issue
 
 use core::mem::{ManuallyDrop, MaybeUninit};
 use core::panic::PanicInfo;
