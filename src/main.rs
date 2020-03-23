@@ -1,12 +1,15 @@
 #![no_std]
 #![no_main]
+#![feature(asm)]
 
 ///! A small reproduction case
 ///!
 ///! Build with `cargo xbuild --target x86_64-unknown-uefi -Z unstable-options --profile kernel_debug`
 
+mod sub_module;
+
 use core::panic::PanicInfo;
-use sub_crate_test::call_closure_with_stack;
+use sub_module::call_closure_with_stack;
 
 #[no_mangle]
 pub unsafe fn _start(stack: *mut u8) {

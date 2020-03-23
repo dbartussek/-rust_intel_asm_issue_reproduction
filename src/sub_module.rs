@@ -1,5 +1,3 @@
-#![no_std]
-#![feature(asm)]
 
 use core::mem::{ManuallyDrop, MaybeUninit};
 
@@ -28,12 +26,12 @@ pub unsafe fn call_with_stack<T>(
 /// This function is unsafe because it changes the stack pointer to stack.
 /// stack must be suitable to be used as a stack pointer on the target system.
 pub unsafe fn call_closure_with_stack<F, R>(closure: F, stack: *mut u8) -> R
-where
-    F: FnOnce() -> R,
-{
-    extern "sysv64" fn inner<F, R>(data: &mut (ManuallyDrop<F>, MaybeUninit<R>))
     where
         F: FnOnce() -> R,
+{
+    extern "sysv64" fn inner<F, R>(data: &mut (ManuallyDrop<F>, MaybeUninit<R>))
+        where
+            F: FnOnce() -> R,
     {
         let result = {
             // Read the closure from context, taking ownership of it

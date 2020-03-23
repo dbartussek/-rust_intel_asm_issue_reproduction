@@ -3,11 +3,4 @@
 [[package]]
 name = "asm_test"
 version = "0.1.0"
-dependencies = [
- "sub_crate_test 0.1.0",
-]
-
-[[package]]
-name = "sub_crate_test"
-version = "0.1.0"
 

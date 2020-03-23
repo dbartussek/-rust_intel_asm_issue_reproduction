@@ -6,12 +6,8 @@ version = "0.1.0"
 authors = ["Dario Bartussek <d.bartussek@gmail.com>"]
 edition = "2018"
 
-[workspace]
-members = [ "sub_crate_test" ]
-
 [profile.kernel_debug]
 inherits = "dev"
 opt-level = "s"
 
 [dependencies]
-sub_crate_test = { path = "sub_crate_test" }
